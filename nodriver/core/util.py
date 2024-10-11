@@ -139,6 +139,8 @@ def free_port() -> int:
 
 
 def deconstruct_browser():
+    print("skip deconstructing browsers")
+    return
     import time
 
     for _ in __registered__instances__:

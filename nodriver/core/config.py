@@ -123,9 +123,9 @@ class Config:
             "--disable-component-update",
             "--disable-backgrounding-occluded-windows",
             "--disable-renderer-backgrounding",
-            "--disable-background-networking",
+            # "--disable-background-networking",
             "--disable-dev-shm-usage",
-            "--disable-features=IsolateOrigins,site-per-process",
+            # "--disable-features=IsolateOrigins,site-per-process",
             "--disable-session-crashed-bubble",
             "--disable-search-engine-choice-screen",
         ]
