@@ -336,7 +336,7 @@ class Browser:
             self._process_pid = self._process.pid
 
         self._http = HTTPApi((self.config.host, self.config.port))
-        util.get_registered_instances().add(self)
+        # util.get_registered_instances().add(self)
         await asyncio.sleep(0.25)
         for _ in range(5):
             try:
@@ -828,4 +828,4 @@ class HTTPApi:
         return json.loads(response.read())
 
 
-atexit.register(util.deconstruct_browser)
+# atexit.register(util.deconstruct_browser)

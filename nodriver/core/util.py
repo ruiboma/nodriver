@@ -16,7 +16,7 @@ if typing.TYPE_CHECKING:
 from .config import Config
 from .. import cdp
 
-__registered__instances__: Set[Browser] = set()
+# __registered__instances__: Set[Browser] = set()
 
 logger = logging.getLogger(__name__)
 T = typing.TypeVar("T")
@@ -120,8 +120,8 @@ async def create_from_undetected_chromedriver(
     return browser
 
 
-def get_registered_instances():
-    return __registered__instances__
+# def get_registered_instances():
+#     return __registered__instances__
 
 
 def free_port() -> int:
