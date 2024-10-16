@@ -291,6 +291,7 @@ class Browser:
             logger.debug(
                 "BROWSER EXECUTABLE PATH: %s", self.config.browser_executable_path
             )
+            print(f"BROWSER EXECUTABLE PATH: {self.config.browser_executable_path}")
             if not pathlib.Path(self.config.browser_executable_path).exists():
                 raise FileNotFoundError(
                     (

@@ -183,7 +183,7 @@ class Config:
         args = self._default_browser_args.copy()
 
         args += ["--user-data-dir=%s" % self.user_data_dir]
-        args += ["--disable-features=IsolateOrigins,site-per-process"]
+        # args += ["--disable-features=IsolateOrigins,site-per-process"]
         args += ["--disable-session-crashed-bubble"]
         if self.expert:
             args += ["--disable-web-security", "--disable-site-isolation-trials"]
