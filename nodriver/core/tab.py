@@ -342,6 +342,21 @@ class Tab(Connection):
             await self
             return self
 
+    async def multiple_selector_via_text(self, selector: str, options: [str],
+                                         _node: Optional[Union[cdp.dom.Node, "element.Element"]] = None,):
+        """
+
+        """
+        node_list = await self.query_selector_all(selector)
+        choice_dic = {key: True for key in options}
+        for node in node_list:
+            if choice_dic.get(node.text, False):
+                await node.click()
+        return
+
+
+
+
     async def query_selector_all(
             self,
             selector: str,
@@ -1120,6 +1135,30 @@ class Tab(Connection):
                     )
                 await self.sleep(0.5)
             return item
+
+    async def wait_for_load_state(
+            self,
+            state: str = "load",  # 默认等待 load 状态完成
+            timeout: Optional[Union[int, float]] = 10,
+    ):
+        """
+        waiting for tab context load state
+        :param state: 加载状态 ('load', 'domcontentloaded', 'networkidle')
+        :param timeout: 超时时间，默认 10 秒
+        :raises: asyncio.TimeoutError
+        """
+        loop = asyncio.get_running_loop()
+        now = loop.time()
+
+        # 检查加载状态是否符合
+        async def is_load_state_reached():
+            return await self.send(cdp.runtime.evaluate(f"document.readyState === '{state}'"))
+
+        # 等待加载状态完成
+        while not await is_load_state_reached():
+            if loop.time() - now > timeout:
+                raise asyncio.TimeoutError(f"time ran out while waiting for load state: {state}")
+            await self.sleep(0.5)
 
     async def download_file(self, url: str, filename: Optional[PathLike] = None):
         """

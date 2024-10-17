@@ -96,6 +96,7 @@ async def start(
     return await Browser.create(config)
 
 
+
 async def create_from_undetected_chromedriver(
     driver: "undetected_chromedriver.Chrome",
 ) -> Browser:

@@ -89,6 +89,7 @@ class Browser:
             )
         instance = cls(config)
         await instance.start()
+        await instance.success_message()
         return instance
 
     def __init__(self, config: Config, **kwargs):
@@ -222,6 +223,18 @@ class Browser:
                 % (self.targets.index(current_tab), current_tab)
             )
             self.targets.remove(current_tab)
+
+    async def success_message(self):
+        warnings.warn(r"""
+     _   _           _        _                      
+    | \ | |         | |      (_)                     
+    |  \| | ___   __| | ___   _ _ __  _ __   ___ _ __ 
+    | . ` |/ _ \ / _` |/ _ \ | | '_ \| '_ \ / _ \ '__|
+    | |\  | (_) | (_| |  __/ | | | | | | | |  __/ |   
+    |_| \_|\___/ \__,_|\___| |_|_| |_|_| |_|\___|_|   
+
+                  nodriver customized version  launch success!             
+        """)
 
     async def get(
         self, url="chrome://welcome", new_tab: bool = False, new_window: bool = False
